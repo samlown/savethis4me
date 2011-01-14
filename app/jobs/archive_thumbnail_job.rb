@@ -4,7 +4,7 @@ class ArchiveThumbnailJob < Struct.new(:archive_id)
   # Required :archive_id
   def perform
     archive = Archive.find(archive_id)
-    logger.info("Updating thumbnail for archive")
+    # logger.info("Updating thumbnail for archive")
     archive.update_thumbnail
     archive.save!
   #rescue => e

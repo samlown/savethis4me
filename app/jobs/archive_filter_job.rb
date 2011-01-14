@@ -11,7 +11,7 @@ class ArchiveFilterJob < Struct.new(:archive_id, :filters)
   #
   def perform
     archive = Archive.find(archive_id)
-    return logger.info("Archive is not an image") unless archive.is_image?
+    return unless archive.is_image?
 
     archive.update_attribute(:updating_at, Time.now) if archive.updating_at.nil?
     image = archive.data_tempfile
@@ -30,7 +30,7 @@ class ArchiveFilterJob < Struct.new(:archive_id, :filters)
     archive.update_thumbnail
   rescue => e
     puts "Filter Error: #{e}"
-    logger.info "Unable to perform filter operations: #{e}"
+    # logger.info "Unable to perform filter operations: #{e}"
   ensure
     unless archive.nil?
       archive.updating_at = nil

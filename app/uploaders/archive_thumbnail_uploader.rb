@@ -3,9 +3,9 @@
 class ArchiveThumbnailUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::ImageScience
-  include CarrierWave::MiniMagick
+  # include CarrierWave::MiniMagick
 
   # Automatically load the configuration for this environment
   YAML::load(File.open(Rails.root.join("config/carrierwave.yml")))[Rails.env].each {|k, v| send(k, v)}
