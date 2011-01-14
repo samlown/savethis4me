@@ -13,6 +13,8 @@ gem 'carrierwave', '0.4.10'
 
 # gem 'base32', :git => 'git://github.com/levinalex/base32.git', :require => 'base32/crockford'
 
+gem 'daemons'
+
 group :production do
   gem 'pg'
 end

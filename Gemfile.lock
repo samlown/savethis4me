@@ -55,6 +55,7 @@ PLATFORMS
 
 DEPENDENCIES
   carrierwave (= 0.4.10)
+  daemons
   haml (>= 3.0)
   mongrel
   pg
