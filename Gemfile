@@ -8,7 +8,7 @@ gem 'haml', '>= 3.0'
 gem 'ruby-openid'
 gem 'right_aws'
 
-gem 'rmagick', :require => "RMagick"
+gem 'rmagick', '2.12.2', :require => "RMagick"
 gem 'carrierwave', '0.4.10'
 
 

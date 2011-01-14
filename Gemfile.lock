@@ -36,7 +36,7 @@ GEM
     right_aws (2.0.0)
       right_http_connection (>= 1.2.1)
     right_http_connection (1.2.4)
-    rmagick (2.13.1)
+    rmagick (2.12.2)
     rspec (2.0.0)
       rspec-core (= 2.0.0)
       rspec-expectations (= 2.0.0)
@@ -60,7 +60,7 @@ DEPENDENCIES
   pg
   rails (= 2.3.10)
   right_aws
-  rmagick
+  rmagick (= 2.12.2)
   rspec
   ruby-openid
   sqlite3-ruby
