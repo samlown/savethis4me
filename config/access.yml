@@ -1,0 +1,10 @@
+#
+# Control access permissions
+#
+
+# Only allow the following list of normalized open-id urls
+allow:
+
+# Deny the following list
+deny:
+

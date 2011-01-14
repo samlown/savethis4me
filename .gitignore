@@ -1,0 +1,15 @@
+tmp/*
+log/*
+vendor/rails
+nbproject
+.svn
+db/schema.rb
+.DS_Store
+db/*.sqlite3
+*.swp
+public/images/tmp/*
+public/uploads/*
+
+# Ignore the capistrano deploy files
+config/deploy.rb
+Capfile

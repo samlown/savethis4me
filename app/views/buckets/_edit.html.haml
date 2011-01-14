@@ -1,0 +1,15 @@
+.buckets.edit
+
+  - form_for @bucket do |f|
+    %p
+      = f.label :name, "Bucket Name"
+      %br
+      = f.text_field :name, :class => 'span-10 text', :disabled => !@bucket.new_record?
+
+    %p
+      = f.label :cname, "Bucket CNAME"
+      %small= "(leave blank for default)"
+      %br
+      = f.text_field :cname, :class => 'span-10 text'
+
+    %button{:type => 'submit'}= "Save"

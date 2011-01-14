@@ -1,0 +1,21 @@
+.accounts.new.span-12
+  %p
+    Please enter your amazon s3 account details.
+
+  - form_for @account do |f|
+    - unless @account.errors.empty?
+      .error
+        = @account.errors.map{|attr, msg| msg}.join('<br />')
+
+    %p
+      = f.label :access_key_id, "Access Key"
+      %br
+      = f.text_field :access_key_id, :class => 'span-10 text'
+
+    %p
+      = f.label :secret_access_key, "Secret Key"
+      %br
+      = f.text_field :secret_access_key, :class => 'span-10 text'
+
+    %p
+      %button{:type => 'submit'}= 'Create'

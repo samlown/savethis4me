@@ -1,0 +1,63 @@
+.header
+  .spinner
+    %a.button.refresh{:href => '#', :title => "Click here to if anything has been changed on the source account to refresh"}
+      = image_tag 'icons/refresh.png'
+    = image_tag 'icons/spinner.gif', :class => 'icon'
+
+  .bucket
+    = select_tag 'bucket', options_for_select(current_membership.buckets.map{|b| [b.name, bucket_url(b)]}, bucket_url(@bucket) )
+
+  %ul.hierarchy
+    %li
+      %a.button{:href => bucket_archives_url(@bucket)}= @bucket.name
+
+  .account
+    = link_to 'accounts', accounts_url
+    = link_to 'logout', destroy_session_url
+
+
+.templates{:style => 'display: none;'}
+  = render :partial => 'archives/show'
+  .icons
+    = image_tag 'icons/folder-48x48.png', :class => 'folder'
+    = image_tag 'icons/image-48x48.png', :class => 'image'
+    = image_tag 'icons/document-48x48.png', :class => 'file'
+  .ajaxError
+    .message
+      = "Something went wrong, please check connection and try again."
+
+.buckets.show
+  - form_tag bucket_archives_url(@bucket), :method => :get do
+    =# hidden_field_tag 'parent_id'
+  .bucketPadding
+    .archives
+      %ul
+      .clear
+
+.editArea
+  .close
+    %a{:href => '#'} close
+  .spinner
+    = image_tag 'icons/spinner-large.gif'    
+  .content
+
+.footer
+  %ul
+    %li
+      %a.button.newFolder{:href => '#'}= "create folder"
+    %li
+      %a.button.uploadFile{:href => upload_new_bucket_archive_url(@bucket)}= "upload file"
+    %li.uploading.template
+      %a{:href => "#", :title => 'file name'}= "Uploading..."
+    %li.uploaded.template
+      %a{:href => "#", :title => 'file name'}= "Uploaded!"
+    %li.updating.template
+      %a{:href => "#", :title => 'file name'}= "Updating..."
+    %li.updated.template
+      %a{:href => "#", :title => 'file name'}= "Updated!"
+
+.uploadBox
+
+.newFolderBox
+  = render :partial => 'archives/new_folder'
+

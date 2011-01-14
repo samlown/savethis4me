@@ -1,0 +1,132 @@
+.archive.edit{:id => "edit_archive_#{@archive.id}"}
+  .padding
+
+    - if @archive.updating?
+      %p
+        = image_tag 'icons/spinner-large.gif'
+        %br
+        = "Archive is being updated..."
+
+    - else
+      - unless @archive.updating_at.nil?
+        %p
+          = "It looks like this archive was being updated, but failed, please check and try again!"
+      - form_for [@bucket, @archive] do |f|
+        .thumb
+          %a{:href => @archive.public_url, :target => :blank}
+            - if @archive.has_thumbnail?
+              = image_tag @archive.thumbnail.url.nil? ? 'icons/spinner-large.gif' : @archive.thumbnail.url
+            - elsif @archive.is_image?
+              = image_tag 'icons/image-48x48.png'
+            - elsif @archive.is_folder?
+              = image_tag 'icons/folder-48x48.png'
+            - else
+              = image_tag 'icons/document-48x48.png'
+
+        %table
+          %tr.name
+            %th= "Name:"
+            %td
+              = @archive.display_name
+          %tr.url
+            %th= "URL:"
+            %td
+              = link_to 'download', @archive.public_url, :target => :blank, :class => 'downloadLink'
+              %span.copy
+          %tr.date
+            %th= "Date:"
+            %td
+              = @archive.date
+          %tr.size
+            %th= "Size:"
+            %td
+              = @archive.size
+          
+          - if @archive.has_thumbnail?
+            - unless @archive.metadata.nil? or @archive.metadata.empty?
+              %tr.dimensions
+                %th= "Image:"
+                %td
+                  = "#{@archive.metadata['width']}x#{@archive.metadata['height']}"
+                  = @archive.metadata['format']
+   
+      -# %h3= "Filters"
+      - form_for [@bucket, Archive.new], :html => {:class => 'createCopy'} do |f|
+        = hidden_field_tag :archive_id, @archive.id
+        = hidden_field_tag :parent_id, @archive.parent_id
+        .filters
+          - if @archive.has_thumbnail?
+            .cropFilter.filter
+              %p
+                = check_box_tag 'filters[]', 'crop', false, :class => 'defineCrop', :id => 'filters_crop'
+                %label{:for => 'filters_crop'}= "Crop"
+              %p
+                = "Top Left:"
+                = text_field_tag 'crop[x]', 0, :size => 3
+                = 'x'
+                = text_field_tag 'crop[y]', 0, :size => 3
+                %br
+                = "Dimensions:"
+                = text_field_tag 'crop[width]', @archive.metadata['width'], :size => 3
+                = 'x'
+                = text_field_tag 'crop[height]', @archive.metadata['height'], :size => 3
+
+
+            .resizeFilter.filter
+              %p
+                = check_box_tag 'filters[]', 'resize', false, :id => 'filters_resize'
+                %label{:for => 'filters_resize'}= "Resize to fit"
+              %p
+                = "New size:"
+                = text_field_tag 'resize[width]', @archive.metadata['width'], :size => 4
+                = 'x'
+                = text_field_tag 'resize[height]', @archive.metadata['height'], :size => 4
+
+            .borderFilter.filter
+              %p
+                = check_box_tag 'filters[]', 'border', false, :id => 'filters_border'
+                %label{:for => 'filters_border'}= "Add border"
+              %p
+                = "Thickness:"
+                = text_field_tag('border[width]', '1', :size => 1, :maxsize => 1) + 'px'
+                &nbsp;
+                = "Color:"
+                = text_field_tag('border[color]', 'grey40', :size => 6)
+
+            .shadowFilter.filter
+              %p
+                = check_box_tag 'filters[]', 'drop_shadow', false, :id => 'filters_drop_shadow'
+                %label{:for => 'filters_drop_shadow'}= "Add drop shadow"
+              %p
+                = "Distance:"
+                = text_field_tag('drop_shadow[distance]', '7', :size => 2) + 'px'
+                &nbsp;
+                = "Blur:"
+                = text_field_tag('drop_shadow[blur]', '4', :size => 2) + 'px'
+                %br
+                = "Density:"
+                = text_field_tag('drop_shadow[density]', '60', :size => 3) + '%'
+                &nbsp;
+                = "Angle:"
+                = text_field_tag('drop_shadow[angle]', '315', :size => 3) + '°'
+
+        .filter.name
+          %p
+            = f.label :display_name, "Create copy with name:"
+            %br
+            = f.text_field :display_name, :value => @archive.display_name
+            %br
+            %span.actions
+              %button.positive{:type => 'submit'}= 'create'
+
+   
+      - form_for [@bucket, @archive], :html => {:method => :delete, :class => "delete"} do |f|
+        %p
+          %button.negative
+            = "Delete"
+            %span.confirm= "Are you sure you want to delete this archive?"
+          %span.clear
+
+     
+      
+

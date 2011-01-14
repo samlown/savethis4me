@@ -1,0 +1,23 @@
+!!! Strict
+%html
+  %head
+    = stylesheet_link_tag 'blueprint/screen'
+    = stylesheet_link_tag 'blueprint/print', :media => :print
+    /[if IE]
+      = stylesheet_link_tag 'blueprint/ie'
+    = stylesheet_link_tag ['jquery/smoothness/jquery-ui', 'jquery.Jcrop']
+    = javascript_include_tag ['jquery', 'jquery-ui', 'jrails', 'jquery.swfobject.min.js', 'jquery.form.js', 'jquery.Jcrop.js', 'json2.js', 'application'], :cache => true
+    = stylesheet_link_tag ['layout']
+    
+    %title SaveThis4.me
+
+  %body
+    .bucketContainer
+      = yield
+
+    .cropImagePopup{:style => 'display: none;'}
+      .background &nbsp;
+      .form
+        %img{:src => ''}
+        %button.done= "done"
+

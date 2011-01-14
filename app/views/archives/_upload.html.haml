@@ -1,0 +1,6 @@
+.archives.upload
+  - path = @parent_archive ? @parent_archive.prefix_path : ''
+  - s3_upload_form :key => path, :bucket => @bucket.name, :access_key_id => current_account.access_key_id, :secret_access_key => current_account.secret_access_key do
+    .fileField
+      = file_field_tag 'file'
+    %button{:type => 'submit'}= 'Upload'

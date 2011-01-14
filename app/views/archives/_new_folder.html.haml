@@ -1,0 +1,9 @@
+.archives.newFolder
+  - form_for [@bucket, Archive.new] do |f|
+    = hidden_field_tag 'type', 'folder'
+    = hidden_field_tag :parent_id
+    .fields
+      = f.label :display_name, "Name:"
+      = f.text_field :display_name
+    %button{:type => 'submit'}= "Create"
+

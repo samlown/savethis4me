@@ -1,0 +1,33 @@
+.memberships.edit
+  
+  - form_for @membership do |f|
+    - fields_for :user, @membership.user do |u|
+      %p
+        = u.label :identity_url, "Open ID Identity URL"
+        %br
+        = u.text_field :identity_url, :class => 'span-10 text', :disabled => !@membership.new_record?
+
+    .roles
+      %p
+        = f.label :role, "User's Role"
+        %br
+        = f.radio_button :role, 'admin'
+        = label_tag 'membership_role_admin', "Administrator - can manage users and account", :class => 'light'
+        %br
+        = f.radio_button :role, 'user'
+        = label_tag 'membership_role_user', "User - can only manage files", :class => 'light'
+
+
+    .buckets
+      %p
+        = f.label :bucket_ids, "Allow access to <em>all</em>, or <em>just</em> the following buckets:"
+        %br
+        %ul
+          - current_account.buckets.each do |bucket|
+            %li
+              = check_box_tag "membership[bucket_ids][]", bucket.id, @membership.bucket_ids.include?(bucket.id.to_s), :id => "membership_bucket_ids_#{bucket.id}"
+              = label_tag "membership_bucket_ids_#{bucket.id}", bucket.name
+      .clear
+
+    %p
+      %button{:type => 'submit'}= "Save"

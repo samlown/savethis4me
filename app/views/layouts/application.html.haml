@@ -1,0 +1,32 @@
+!!! Strict
+%html
+  %head
+    = stylesheet_link_tag 'blueprint/screen'
+    = stylesheet_link_tag 'blueprint/print', :media => :print
+    /[if IE]
+      = stylesheet_link_tag 'blueprint/ie'
+    = stylesheet_link_tag ['jquery/smoothness/jquery-ui']
+    = javascript_include_tag ['jquery', 'jquery-ui', 'jrails', 'jquery.swfobject.min.js', 'application'], :cache => false 
+    = stylesheet_link_tag ['layout']
+    
+    %title SaveThis4.me
+
+  %body
+    .plainContainer
+      #header
+        %h1 savethis4.me
+
+        - if logged_in?
+          .nav
+            = link_to_if @controller.action_name != 'index', 'accounts', accounts_url
+            = link_to 'logout', destroy_session_url
+
+      #content
+        = yield
+
+      #footer
+        
+      #dialog &nbsp;
+      #dialogLoading
+        Loading...
+

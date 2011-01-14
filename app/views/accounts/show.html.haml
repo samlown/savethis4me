@@ -1,0 +1,54 @@
+.accounts.show.span-14
+  %h2= "Details for the current account"
+
+  %p
+    %strong= "Access Key:"
+    = current_account.access_key_id 
+
+  %h3= "Buckets"
+  - if current_membership.is_admin? and false
+    %p
+      = link_to "create a new bucket", new_bucket_url, 'data-title' => "Create a new Bucket", :class => 'dialogLink'
+
+  - if @buckets.length > 0
+    %table
+      %tr
+        %th= "Bucket Name"
+        %th= "Added"
+        %th &nbsp;
+      - @buckets.each do |bucket|
+        %tr
+          %td= link_to bucket.name, bucket_url(bucket)
+          %td= bucket.created_at
+          %td 
+            - if current_membership.is_admin?
+              = link_to 'edit', edit_bucket_url(bucket), 'data-title' => "Editing bucket", :class => 'dialogLink'
+  - else
+    %p
+      %strong= "This account has no buckets yet!"
+
+  
+  %h3= "Account Members"
+  - if current_membership.is_admin?
+    %p
+      = link_to "add a new member", new_membership_url, 'data-title' => "Add a new member", :class => 'dialogLink'
+  %table
+    %tr
+      %th= "User Open ID"
+      %th= "Added"
+      %th= "Role"
+      %th= "Buckets"
+      %th &nbsp;
+    - @memberships.each do |m|
+      %tr
+        %td= m.user.identity_url
+        %td= m.created_at
+        %td= m.role_name
+        %td= m.buckets.nil? || m.bucket_ids.empty? ? 'All' : m.buckets.map{|b| b.name}.join(', ')
+        %td
+          - if m.role != 'owner' && current_membership.is_admin?
+            = link_to 'edit', edit_membership_url(m), :class => 'dialogLink', 'data-title' => "Editing membership"
+            = link_to 'remove', membership_url(m), :class => 'destroyLink', 'data-confirm' => "Are you sure you want to delete this membership for #{m.user.identity_url}?"
+
+
+

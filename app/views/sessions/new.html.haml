@@ -1,0 +1,21 @@
+.sessions.new
+
+  - if flash[:warning]
+    .error.span-7
+      = flash[:warning]
+
+  .span-12
+    - form_tag session_url do
+
+      %p
+        %strong= "Enter your OpenID details, if you don't already have an account, we'll create one!"
+
+      .span-12
+        %p
+          %label= "OpenID:"
+          %br
+          = text_field_tag "openid_identifier", '', :class => 'title span-12'
+      .span-4
+        %p
+          %button{:type => 'submit'}= 'Sign in'
+

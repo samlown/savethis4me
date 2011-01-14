@@ -1,0 +1,259 @@
+a span.confirm, button span.confirm {
+  display: none; }
+
+button {
+  font-size: 10px; }
+
+form p {
+  margin-bottom: 5px; }
+
+#dialogLoading {
+  display: none; }
+
+.plainContainer {
+  width: 540px;
+  float: none;
+  margin: 20px auto; }
+  .plainContainer #header {
+    position: relative; }
+    .plainContainer #header h1 {
+      font-size: 20px; }
+    .plainContainer #header .nav {
+      position: absolute;
+      top: 5px;
+      right: 10px; }
+
+.bucketContainer .header, .bucketContainer .footer {
+  z-index: 100; }
+  .bucketContainer .header a.button, .bucketContainer .footer a.button {
+    margin: 0px;
+    padding: 3px 8px 3px 6px; }
+  .bucketContainer .header li.template, .bucketContainer .footer li.template {
+    display: none; }
+.bucketContainer .header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 32px;
+  width: 100%;
+  padding: 2px 0px;
+  background-color: #E6DDD5;
+  border-bottom: 1px solid #ccc; }
+  .bucketContainer .header .bucket {
+    padding-left: 40px;
+    float: left; }
+  .bucketContainer .header ul.hierarchy {
+    float: left;
+    margin: 0px;
+    padding-top: 5px;
+    list-style: none; }
+    .bucketContainer .header ul.hierarchy li {
+      float: left;
+      margin-left: 10px; }
+  .bucketContainer .header .spinner {
+    position: absolute;
+    left: 5px;
+    top: 7px; }
+    .bucketContainer .header .spinner .icon {
+      display: none; }
+    .bucketContainer .header .spinner a.refresh {
+      display: block;
+      padding: 3px 5px 3px 5px; }
+      .bucketContainer .header .spinner a.refresh img {
+        padding: 0px;
+        margin: 0px 0px -3px 0px !important; }
+  .bucketContainer .header .ajaxError {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%; }
+    .bucketContainer .header .ajaxError .message {
+      margin: 0px auto;
+      width: 300px;
+      background-color: #FF7575;
+      color: black;
+      font-weight: bold;
+      padding: 5px; }
+  .bucketContainer .header .account {
+    position: absolute;
+    right: 10px;
+    top: 5px; }
+.bucketContainer .footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  height: 32px;
+  background-color: #E6DDD5;
+  border-top: 1px solid #ccc;
+  width: 100%; }
+  .bucketContainer .footer ul {
+    list-style: none;
+    margin: 0px; }
+  .bucketContainer .footer li {
+    float: left;
+    margin-left: 10px;
+    margin-top: 4px; }
+.bucketContainer .editArea {
+  position: fixed;
+  overflow: auto;
+  z-index: 200;
+  display: block;
+  right: -265px;
+  top: 0px;
+  width: 260px;
+  height: 100%;
+  font-size: 12px;
+  background-color: #FFF;
+  border-left: 2px solid #999; }
+  .bucketContainer .editArea button {
+    float: none;
+    display: inline; }
+  .bucketContainer .editArea input {
+    border: 1px solid #ccc; }
+  .bucketContainer .editArea .spinner {
+    display: none; }
+  .bucketContainer .editArea .content {
+    overflow: auto;
+    padding: 10px; }
+    .bucketContainer .editArea .content .spinner {
+      display: block;
+      text-align: center; }
+  .bucketContainer .editArea .thumb {
+    text-align: center; }
+  .bucketContainer .editArea .filter {
+    padding: 4px 5px 4px 5px;
+    margin: 0px 0px;
+    background-color: #eee; }
+  .bucketContainer .editArea .filter.name input {
+    width: 210px; }
+  .bucketContainer .editArea .filter.name span.actions {
+    display: block;
+    text-align: right; }
+  .bucketContainer .editArea table {
+    width: auto;
+    margin-bottom: 5px; }
+    .bucketContainer .editArea table th, .bucketContainer .editArea table td {
+      padding-top: 2px;
+      padding-bottom: 0px; }
+    .bucketContainer .editArea table th {
+      vertical-align: top;
+      text-align: right;
+      padding-right: 0px; }
+    .bucketContainer .editArea table tr.url td .copy {
+      padding-left: 5px;
+      height: 14px; }
+      .bucketContainer .editArea table tr.url td .copy object, .bucketContainer .editArea table tr.url td .copy embed {
+        vertical-align: middle; }
+  .bucketContainer .editArea h3 {
+    margin-bottom: 5px; }
+  .bucketContainer .editArea h4 {
+    margin-bottom: 2px;
+    margin-top: 5px; }
+  .bucketContainer .editArea p {
+    margin-bottom: 2px; }
+.bucketContainer .uploadBox, .bucketContainer .newFolderBox {
+  position: fixed;
+  left: 60px;
+  bottom: -70px /* 20px */;
+  z-index: 90;
+  width: 360px;
+  height: 45px;
+  padding: 15px;
+  background-color: #E6DDD5;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px; }
+  .bucketContainer .uploadBox form .fileField, .bucketContainer .newFolderBox form .fileField {
+    float: left;
+    margin-top: 5px; }
+  .bucketContainer .uploadBox form button, .bucketContainer .newFolderBox form button {
+    float: left;
+    font-size: 10px;
+    margin-left: 10px; }
+.bucketContainer .newFolderBox {
+  left: 10px;
+  width: 280px; }
+  .bucketContainer .newFolderBox .fields {
+    float: left; }
+    .bucketContainer .newFolderBox .fields input {
+      margin-top: 6px;
+      width: 140px; }
+.bucketContainer .buckets.show .archives {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 10px; }
+.bucketContainer .buckets.show ul {
+  float: left;
+  margin: 0px;
+  list-style: none; }
+.bucketContainer .buckets.show li.archive {
+  float: left;
+  margin-bottom: 20px;
+  margin-right: 10px; }
+  .bucketContainer .buckets.show li.archive a.padding {
+    word-wrap: break-word;
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    height: 90px;
+    padding: 3px;
+    text-align: center; }
+  .bucketContainer .buckets.show li.archive .icon {
+    margin: 2px auto;
+    margin-bottom: 4px;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+    border: 0px solid #ddd; }
+    .bucketContainer .buckets.show li.archive .icon img {
+      vertical-align: middle; }
+  .bucketContainer .buckets.show li.archive .date {
+    display: none; }
+.bucketContainer .buckets.show li.archive.image .icon {
+  /* background: url('/images/icons/background-48x48.png') 1px 1px no-repeat */ }
+  .bucketContainer .buckets.show li.archive.image .icon img {
+    padding-top: 2px;
+    margin-left: -4px; }
+.bucketContainer .buckets.show li.archive .padding:hover {
+  background-color: #ddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px; }
+.bucketContainer .buckets.show li.archive.selected .padding,
+.bucketContainer .buckets.show li.archive.selected .padding:hover {
+  background-color: #FFFF8F;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px; }
+
+.cropImagePopup {
+  position: absolute;
+  z-index: 1002;
+  top: 0;
+  left: 0; }
+  .cropImagePopup .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    background-color: #666;
+    opacity: 0.5; }
+  .cropImagePopup .form {
+    position: absolute;
+    left: 0px;
+    z-index: 1003;
+    width: 100%;
+    padding: 20px; }
+
+.memberships form ul {
+  list-style: none;
+  margin: 0; }
+.memberships form li {
+  width: 200px;
+  float: left; }
+  .memberships form li label {
+    font-weight: normal; }
+.memberships form label.light {
+  font-weight: normal; }
