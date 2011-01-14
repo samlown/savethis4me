@@ -182,7 +182,6 @@ class Archive < ActiveRecord::Base
   # Provides the new AWS key
   def aws_copy(new_name)
     # Set the permissions on the new key
-    # OLD: RightAws::S3::Grantee.new(new_key, "http://acs.amazonaws.com/groups/global/AllUsers", 'READ', :apply)
     bucket.account.aws_connection.copy(bucket.name, name, bucket.name, new_name, :copy, 'x-amz-acl' => 'public-read')
   end
 

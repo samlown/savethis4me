@@ -29,7 +29,7 @@ class Account < ActiveRecord::Base
 
   # Provide an AWS::S3 connection for this account 
   def aws_connection
-    @aws_connection ||= RightAws::S3Interface.new(access_key_id, secret_access_key)
+    @aws_connection ||= Aws::S3Interface.new(access_key_id, secret_access_key)
   end
 
   # Try to make a connection to test the keys
