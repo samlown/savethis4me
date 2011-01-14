@@ -52,7 +52,7 @@ class ArchivesController < ApplicationController
     loading_thumb = false
     if @archive.has_thumbnail? and @archive.thumbnail.url.nil? and @archive.updating_at.nil?
       # Send a request for the thumbnail
-      ArchiveThumbnailWorker.asynch_update_thumbnail(:archive_id => @archive.id)
+      Delayed::Job.enqueue ArchiveThumbnailJob.new(@archive.id)
       loading_thumb = true
     end
     respond_to do |format|
@@ -101,7 +101,7 @@ class ArchivesController < ApplicationController
             filters << [filt.to_s, params[filt]]
           end
           # send a request to start the image processing
-          ArchiveFilterWorker.asynch_filter(:filters => filters, :archive_id => @archive.id)
+          Delayed::Job.enqueue ArchiveFilterJob.new(@archive.id, filters)
         end
       end
     end
@@ -145,7 +145,7 @@ class ArchivesController < ApplicationController
     # Now request the thumbnail
     archive = base.find_by_name(key)
     if archive.has_thumbnail?
-      ArchiveThumbnailWorker.asynch_update_thumbnail(:archive_id => archive.id)
+      Delayed::Job.enqueue ArchiveThumbnailJob.new(archive.id, nil)
     end
 
     respond_to do |format|

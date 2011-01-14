@@ -5,14 +5,11 @@ gem 'rails', '2.3.10'
 
 gem 'haml', '>= 3.0'
 
-gem 'ruby-openid'
+gem 'ruby-openid', '~> 2.0.4', :require => 'openid'
 gem 'right_aws'
 
 gem 'rmagick', '2.12.2', :require => "RMagick"
 gem 'carrierwave', '0.4.10'
-
-gem 'daemons'
-
 
 # gem 'base32', :git => 'git://github.com/levinalex/base32.git', :require => 'base32/crockford'
 
